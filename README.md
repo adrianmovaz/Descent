@@ -3,7 +3,7 @@
  
 **Simulación educativa que visualiza en 3D las aproximaciones a una pista**
  
-[English](README.en.md) · **Español** · [日本語](README.ja.md)
+[English](basicinfo_EN.md) · **Español** · [日本語](basicinfo_JP.md)
  
 ![Unity](https://img.shields.io/badge/Unity-LTS-000000?logo=unity&logoColor=white)
 ![C#](https://img.shields.io/badge/C%23-239120?logo=csharp&logoColor=white)
