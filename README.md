@@ -7,9 +7,7 @@
  
 ![Unity](https://img.shields.io/badge/Unity-LTS-000000?logo=unity&logoColor=white)
 ![C#](https://img.shields.io/badge/C%23-239120?logo=csharp&logoColor=white)
-![Platform](https://img.shields.io/badge/Windows-10%2B-0078D6?logo=windows&logoColor=white)
  
-</div>
 ---
  
 ## Descripción
