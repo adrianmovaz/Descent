@@ -1,0 +1,114 @@
+<div align="center">
+# Descent
+ 
+**滑走路への進入を 3D で可視化する教育用シミュレーション**
+ 
+[English](README.md) · [Español](README.es.md) · 日本語
+ 
+![Unity](https://img.shields.io/badge/Unity-LTS-000000?logo=unity&logoColor=white)
+![C#](https://img.shields.io/badge/C%23-239120?logo=csharp&logoColor=white)
+![Platform](https://img.shields.io/badge/Windows-10%2B-0078D6?logo=windows&logoColor=white)
+ 
+</div>
+---
+ 
+## 概要
+ 
+Descent は、正常な進入と誤った進入を同じ視点で比較できる Unity 製の 3D シミュレーションです。
+1〜2 度の小さな偏差が、パイロットの視界・進入の分類・PAPI 灯火にどう影響するかをリアルタイムで確認できます。
+ 
+ESCOM-IPN「コンピュータグラフィックス」の課題として開発しました。
+ 
+## 主な機能
+ 
+- **5 つのシナリオ** — 正常、高め、低め、左偏位、右偏位
+- **2 軸の分類** — 垂直（適正 / 高め / 低め）と横方向（中央 / 左 / 右）を独立して判定
+- **PAPI 灯火** — 航空機の位置に応じて 4 つの灯火が白・赤に変化
+- **5 つのカメラ** — コックピット、追従、側面、平面、フリー
+- **比較モード** — 2 つの軌道を同期して並べて表示
+- **再生コントロール** — 0.5× 〜 4× の速度変更、一時停止、リスタート
+- **アクセシビリティ** — 状態は色だけでなく、アイコンとテキストでも表示
+## 技術スタック
+ 
+| 用途 | 技術 |
+|---|---|
+| エンジン | Unity [LTS バージョン] · URP |
+| 言語 | C# |
+| 中核の数学 | System.Numerics |
+| カメラ | Cinemachine |
+| UI | uGUI + TextMeshPro |
+| モデリング | Blender |
+| テスト | Unity Test Framework (NUnit) |
+| 図 | PlantUML |
+| バージョン管理 | Git + Git LFS |
+ 
+## はじめに
+ 
+### 必要環境
+ 
+- Unity [LTS バージョン]
+- Git LFS
+- Windows 10 以降（WebGL は任意）
+### セットアップ
+ 
+```bash
+git lfs install
+git clone [リポジトリの URL]
+```
+ 
+1. Unity Hub でプロジェクトフォルダを開く
+2. `Assets/_Project/Scenes/Boot` を開く
+3. ▶ で再生
+## 操作方法
+ 
+| キー | 操作 |
+|:---:|---|
+| `Space` | 再生 / 一時停止 |
+| `R` | リスタート |
+| `+` / `−` | 速度変更 |
+| `1` – `5` | カメラ切り替え |
+| `T` | 経路と航跡の表示切り替え |
+| `I` | 教育パネルの表示切り替え |
+| `H` | ヘルプ |
+| `Esc` | メニューに戻る |
+ 
+## アーキテクチャ
+ 
+```
+データ → シミュレーション → オーケストレーション → プレゼンテーション / UI
+```
+ 
+シミュレーションの中核は **UnityEngine に依存しない純粋な C#** で書かれています。
+そのため、数理モデルはシーンを開かずにユニットテストできます。
+ 
+```
+Assets/_Project/
+├── Scenes/                 Boot, MainMenu, Simulation
+├── Scripts/
+│   ├── Core/               軌道・偏差・分類（純粋な C#）
+│   ├── Data/               ScenarioData
+│   ├── Orchestration/      SimulationManager, ComparisonManager
+│   ├── Presentation/       航空機、航跡、PAPI、カメラ
+│   └── UI/                 HUD、メニュー、教育パネル
+├── ScriptableObjects/
+│   └── Scenarios/          シナリオ定義（コード変更なしで追加可能）
+└── Tests/EditMode/
+```
+ 
+## テスト
+ 
+Unity → **Window › General › Test Runner › EditMode › Run All**
+ 
+基準経路の高さ、角度偏差、PAPI の読み取りを、手計算した値と照合します。
+ 
+## ドキュメント
+ 
+要件定義、4+1 アーキテクチャ、数理モデル、UI 設計を含む技術文書は [`docs/`](docs/) にあります（日本語・英語・スペイン語）。
+ 
+## 注意事項
+ 
+本プロジェクトは教育目的です。飛行訓練の代わりにはならず、認証済みの航空データも使用していません。
+ 
+## 作者
+ 
+**Carlos Adrián Vázquez Montero** — ESCOM-IPN
