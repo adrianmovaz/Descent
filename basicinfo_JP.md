@@ -1,3 +1,4 @@
+<div align="center">
 # Descent
  
 **滑走路への進入を 3D で可視化する教育用シミュレーション**
@@ -109,3 +110,5 @@ Unity → **Window › General › Test Runner › EditMode › Run All**
 本プロジェクトは教育目的です。飛行訓練の代わりにはならず、認証済みの航空データも使用していません。
  
 ## 作者
+ 
+**Carlos Adrián Vázquez Montero** — ESCOM-IPN
